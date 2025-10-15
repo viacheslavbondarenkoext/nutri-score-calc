@@ -1,0 +1,6 @@
+When creating or updating a file in this repository, please follow these instructions to ensure consistency and clarity:
+1. **File Naming**: Use clear and descriptive names for files that reflect their content or purpose. Avoid using spaces; use hyphens or underscores instead.
+2. **File Structure**: Organize files into appropriate directories based on their type or function. For example, keep source code in a `src` directory, documentation in a `docs` directory, and tests in a `tests` directory.
+3. **File Format**: Use standard file formats that are widely recognized and supported. For text files, prefer Markdown (`.md`) for documentation and plain text (`.txt`) for simple notes.
+4. **Content Quality**: Ensure that the content is clear, concise, and free of grammatical errors. Use proper headings, bullet points, and formatting to enhance readability.
+5. **Java public class**: When creating or updating Java files, ensure that it is documented with Javadoc comments, follows standard naming conventions (e.g., class names in PascalCase), and includes necessary imports and package declarations.

@@ -1,0 +1,38 @@
+package com.nutriscorecalc.domain;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "products")
+public class ProductEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public Long id;
+
+    public String name;
+    public double energyKj;
+    public double sugar;
+    public double saturatedFat;
+    public double sodium;
+    public double fiber;
+    public double protein;
+    public double fruitsPercentage;
+
+    public ProductEntity() {}
+
+    public ProductEntity(String name, double energyKj, double sugar, double saturatedFat, double sodium, double fiber, double protein, double fruitsPercentage) {
+        this.name = name;
+        this.energyKj = energyKj;
+        this.sugar = sugar;
+        this.saturatedFat = saturatedFat;
+        this.sodium = sodium;
+        this.fiber = fiber;
+        this.protein = protein;
+        this.fruitsPercentage = fruitsPercentage;
+    }
+}
+
