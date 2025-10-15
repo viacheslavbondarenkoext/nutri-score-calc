@@ -7,7 +7,7 @@
         <artifactId>NutriScoreCalc</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    <artifactId>controller</artifactId>
+    <artifactId>api</artifactId>
     <dependencies>
         <dependency>
             <groupId>com.nutriscorecalc</groupId>

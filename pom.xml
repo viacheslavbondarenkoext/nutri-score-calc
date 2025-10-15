@@ -22,9 +22,9 @@
     </properties>
 
     <modules>
-        <module>database</module>
-        <module>logic</module>
-        <module>controller</module>
+        <module>domain</module>
+        <module>service</module>
+        <module>api</module>
         <module>web-spring</module>
     </modules>
 

@@ -10,22 +10,12 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>database</artifactId>
+    <artifactId>service</artifactId>
 
     <dependencies>
         <dependency>
-            <groupId>jakarta.persistence</groupId>
-            <artifactId>jakarta.persistence-api</artifactId>
-            <version>3.1.0</version>
-        </dependency>
-        <dependency>
             <groupId>jakarta.inject</groupId>
             <artifactId>jakarta.inject-api</artifactId>
-            <version>2.0.1</version>
-        </dependency>
-        <dependency>
-            <groupId>jakarta.transaction</groupId>
-            <artifactId>jakarta.transaction-api</artifactId>
             <version>2.0.1</version>
         </dependency>
         <!-- Provide CDI API for compile-time so annotations like @ApplicationScoped resolve -->
@@ -33,7 +23,9 @@
             <groupId>jakarta.enterprise</groupId>
             <artifactId>jakarta.enterprise.cdi-api</artifactId>
             <version>4.0.0</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 
 </project>
+
