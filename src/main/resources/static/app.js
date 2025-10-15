@@ -1,5 +1,5 @@
 (function(){
-  const apiBase = '/root/api/products';
+  const apiBase = '/api/products';
 
   function $(sel, root = document) { return root.querySelector(sel); }
 
@@ -33,7 +33,7 @@
 
   function escapeHtml(s){
     if(!s) return '';
-    return s.replace(/[&<>\"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    return s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   }
 
   async function createProduct(form){

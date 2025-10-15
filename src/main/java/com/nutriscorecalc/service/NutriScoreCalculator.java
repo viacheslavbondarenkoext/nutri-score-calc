@@ -1,11 +1,9 @@
-package com.nutriscorecalc.logic;
+package com.nutriscorecalc.service;
 
-import com.nutriscorecalc.logic.dto.Product;
-import jakarta.inject.Named;
-import jakarta.enterprise.context.ApplicationScoped;
+import com.nutriscorecalc.service.dto.Product;
+import org.springframework.stereotype.Service;
 
-@Named
-@ApplicationScoped
+@Service
 public class NutriScoreCalculator {
 
     // Simplified nutri-score algorithm for demonstration purposes

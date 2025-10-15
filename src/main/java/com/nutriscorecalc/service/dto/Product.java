@@ -1,4 +1,4 @@
-package com.nutriscorecalc.logic.dto;
+package com.nutriscorecalc.service.dto;
 
 public class Product {
     public Long id;
