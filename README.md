@@ -84,6 +84,61 @@ mvn -pl web-spring spring-boot:run
 or run the module's main class with `java -cp` (advanced — only if you know the main class and classpath layout).
 
 
+### 3) Quarkus-based module (if applicable)
+If one of your modules is a Quarkus application (for example `web-quarkus`), use the commands below. These are Windows `cmd.exe` examples and assume the runnable module is named `web-quarkus` — if your module has a different name, substitute it accordingly.
+
+Quick development (fast rebuilds / hot reload):
+
+```cmd
+cd web-quarkus
+mvn quarkus:dev
+```
+
+Build for JVM (produces a runnable jar or a quarkus-app directory):
+
+```cmd
+cd web-quarkus
+mvn -DskipTests clean package
+```
+
+How to run the packaged app (artifact layout may vary by Quarkus packaging):
+- Default (quarkus-app layout):
+
+```cmd
+java -jar target\quarkus-app\quarkus-run.jar
+```
+
+- Legacy / single runner jar (some setups):
+
+```cmd
+java -jar target\*-runner.jar
+```
+
+If you don't know the exact filename, list the target directory to find the produced artifact:
+
+```cmd
+dir web-quarkus\target\*.jar
+dir web-quarkus\target\quarkus-app\*
+```
+
+Build a native executable (optional — requires GraalVM/native toolchain or the Quarkus cloud/native build service):
+
+```cmd
+cd web-quarkus
+mvn -DskipTests -Pnative package
+```
+
+If the native build succeeds you'll get an executable under `target` (Windows: `target\yourapp-runner.exe`) — run it directly:
+
+```cmd
+target\yourapp-runner.exe
+```
+
+Notes for Quarkus
+- `mvn quarkus:dev` is the fastest way to iterate during development.
+- Native builds require extra toolchain setup (GraalVM native-image) or a remote/native builder; expect longer build times and additional prerequisites.
+- If your project is multi-module and the Quarkus module depends on internal modules, build from the repository root with `mvn -pl web-quarkus -am clean package` (similar to the multi-module Maven examples above).
+
 Notes & troubleshooting
 - On first build Maven will download dependencies; this may take a few minutes.
 - If the JAR name differs (version changed), check the module `target\` directory and use that filename.
