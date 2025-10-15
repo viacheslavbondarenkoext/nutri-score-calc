@@ -7,7 +7,10 @@ Application to calculate nutri score
 - A Windows `cmd.exe` prompt (instructions below are cmd.exe examples)
 
 ## Build and run (Windows)
-The project has been refactored into a single Spring Boot application (root `pom.xml`). Build and run from a `cmd.exe` prompt opened at the project root.
+The project can be built and run in two common layouts. Pick the section that matches your repository layout.
+
+### 1) Single-artifact (current merged Spring Boot application)
+Build and run from a `cmd.exe` prompt opened at the project root.
 
 1) Build the project (from project root):
 
@@ -43,8 +46,46 @@ Where to access the app after it starts:
 - Web UI: http://localhost:8080/
 - REST API base: http://localhost:8080/api/products
 
+
+### 2) Multi-module / legacy layout (module artifacts)
+If your repository uses the older multi-module layout (modules in subfolders such as `controller`, `database`, `logic`, `web-spring`), use one of the options below to build and run the runnable module.
+
+Notes: In a multi-module project typically only the web module (for example `web-spring`) produces an executable Spring Boot JAR. Other modules (`database`, `logic`, `controller`) are often libraries and will produce non-executable JARs in their `target/` folders.
+
+Option A — build and run from the module directory (simplest):
+
+```cmd
+cd web-spring
+mvn clean package
+java -jar target\web-spring-1.0-SNAPSHOT.jar
+```
+
+Option B — build the web module (and its module dependencies) from the project root without changing directories:
+
+```cmd
+mvn -pl web-spring -am clean package
+java -jar web-spring\target\web-spring-1.0-SNAPSHOT.jar
+```
+
+(Explanation: `-pl web-spring` selects the `web-spring` module; `-am` also builds modules it depends on.)
+
+If the produced artifact name or version differs, locate the JAR with:
+
+```cmd
+dir web-spring\target\*.jar
+```
+
+If the web module does not produce an executable (fat) jar you can run it with Maven:
+
+```cmd
+mvn -pl web-spring spring-boot:run
+```
+
+or run the module's main class with `java -cp` (advanced — only if you know the main class and classpath layout).
+
+
 Notes & troubleshooting
 - On first build Maven will download dependencies; this may take a few minutes.
-- If the JAR name differs (version changed), check `target\` for the produced artifact and use that filename.
+- If the JAR name differs (version changed), check the module `target\` directory and use that filename.
 - Ensure `JAVA_HOME` points to a JDK 21+ installation. Run `java -version` and `mvn -v` to verify.
-- If you previously built module artifacts (the project used to be multi-module), those module POMs are no longer used by the merged build—build the root project as shown above.
+- If you have both a merged root artifact and module artifacts in the repo, prefer the layout that matches how the project was cloned or prepared locally (single artifact vs multi-module). If you are unsure, `mvn -v` and inspecting the top-level `pom.xml` will indicate whether the project is an aggregator or a single Spring Boot application.
